@@ -45,7 +45,7 @@ const Login = () => {
 
             <div className='divider'>OR</div>
 
-            <button className='btn btn-outline my-5 w-full'>CONTINUE WITH GOOGLE</button>
+            <button className='btn btn-outline my-3 w-full'>CONTINUE WITH GOOGLE</button>
             <button className='btn btn-outline w-full'>CONTINUE WITH GOOGLE</button>
         </div>
         </div>
