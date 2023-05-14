@@ -34,6 +34,7 @@ const AvailableBookings = ({ selectedDate }) => {
             {
                 bookService &&
                 <BookingModal
+                selectedDate={selectedDate}
                     bookService={bookService}
                 ></BookingModal>
             }
