@@ -36,6 +36,7 @@ const AvailableBookings = ({ selectedDate }) => {
                 <BookingModal
                 selectedDate={selectedDate}
                     bookService={bookService}
+                    setBookService={setBookService}
                 ></BookingModal>
             }
         </section>
