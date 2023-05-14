@@ -1,7 +1,7 @@
 import React from 'react';
 import PrimaryButton from '../../../components/PrimaryButton/PrimaryButton';
 
-const BookingOption = ({ bookingOption }) => {
+const BookingOption = ({ bookingOption, setBookService }) => {
     const { name, slots } = bookingOption;
     return (
         <div className="card shadow-xl mt-5">
@@ -10,7 +10,11 @@ const BookingOption = ({ bookingOption }) => {
                 <p>{slots.length > 0 ? slots[0] : 'Try another day'}</p>
                 <p>{slots.length} {slots.length > 1 ? 'spaces' : 'space'} available</p>
                 <div className="card-actions justify-center">
-                    <PrimaryButton>Book for this service</PrimaryButton>
+                    {/* <PrimaryButton>Book for this service</PrimaryButton> */}
+                    <label 
+                    htmlFor="booking-modal" className="btn btn-primary text-white"
+                    onClick={() => setBookService(bookingOption)}
+                    >Book for this service</label>
                 </div>
             </div>
         </div>

@@ -2,22 +2,19 @@ import { format } from 'date-fns';
 import React, { useEffect, useState } from 'react';
 // import Booking from '../Booking/Booking';
 import BookingOption from './BookingOption';
+import BookingModal from '../BookingModal/BookingModal';
 
 const AvailableBookings = ({ selectedDate }) => {
-    const [bookingOptions, setBookingOptions] = useState([])
-    
-
-    // useEffect( ()=>{
-    //     fetch('bookingOptions.json')
-    //     .then(res => res.json())
-    //     .then(data => setBookingOptions(data))
-    // })
+    const [bookingOptions, setBookingOptions] = useState([]);
+    const [bookService, setBookService] = useState(null);
 
 
-    useEffect( () => {
+
+
+    useEffect(() => {
         fetch('bookingOptions.json')
-        .then (res => res.json())
-        .then(data => setBookingOptions(data))
+            .then(res => res.json())
+            .then(data => setBookingOptions(data))
     }, [])
 
     return (
@@ -28,11 +25,18 @@ const AvailableBookings = ({ selectedDate }) => {
             <div className='grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3'>
                 {
                     bookingOptions.map(option => <BookingOption
-                    key= {option._id}
-                    bookingOption= {option}
+                        key={option._id}
+                        bookingOption={option}
+                        setBookService={setBookService}
                     ></BookingOption>)
                 }
             </div>
+            {
+                bookService &&
+                <BookingModal
+                    bookService={bookService}
+                ></BookingModal>
+            }
         </section>
     );
 };
