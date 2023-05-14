@@ -4,7 +4,7 @@ import PrimaryButton from '../../../components/PrimaryButton/PrimaryButton';
 
 const Banner = () => {
     return (
-        <div className="hero min-h-screen" style={{ backgroundImage: `url(${bannerBg})` }}>
+        <div className="hero min-h-screen lg:h-1/2" style={{ backgroundImage: `url(${bannerBg})` }}>
             <div className="hero-overlay bg-opacity-60"></div>
             <div className="hero-content text-center text-neutral-content">
                 <div className="max-w-md">

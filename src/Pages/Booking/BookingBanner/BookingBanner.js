@@ -5,22 +5,21 @@ import { DayPicker } from 'react-day-picker';
 
 import { format } from 'date-fns';
 
-const BookingBanner = () => {
+const BookingBanner = ({selectedDate, setSelectedDate}) => {
 
-    const [selectedDate, setSelectedDate] = useState(new Date());
-
+    
     return (
         <header className='my-6'>
             <div className="hero">
                 <div className="hero-content flex-col lg:flex-row-reverse">
-                    <img src={travelBoy} className='mx-w-sm lg:w-1/2 rounded-lg' alt='' />
+                    <img src={travelBoy} className='mx-w-sm lg:w-1/3 rounded-lg' alt='' />
                     <div>
                         <DayPicker
                         mode='single'
                         selected={selectedDate}
                         onSelect={setSelectedDate}
                         ></DayPicker>
-                        <p>You have selected date: {format(selectedDate, 'PP')}</p>
+                        {/* <p>You have selected date: {format(selectedDate, 'PP')}</p> */}
                     </div>
                 </div>
             </div>
