@@ -43,7 +43,7 @@ const Login = () => {
                     </label>
                       
                 </div>
-                <input className='btn btn-accent w-full' type="submit" />
+                <input className='btn btn-accent w-full' value="Login" type="submit" />
             </form>
             <p className='mt-3'>New to Travel Utopia? <Link to="/signup" className='text-secondary'>Create a new account</Link></p>
 
