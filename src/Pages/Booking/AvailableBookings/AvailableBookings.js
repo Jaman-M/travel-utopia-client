@@ -11,8 +11,8 @@ const AvailableBookings = ({ selectedDate }) => {
 
     const {data: bookingOptions = []} = useQuery({
         queryKey: ['bookingOptions'],
-        queryFn: () => async() =>{
-            const res = await ('http://localhost:5000/bookingOptions');
+        queryFn: async() =>{
+            const res = await fetch ('http://localhost:5000/bookingOptions');
             const data = await res.json();
             return data
         }
