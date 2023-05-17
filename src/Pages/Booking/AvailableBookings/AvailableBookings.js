@@ -3,19 +3,30 @@ import React, { useEffect, useState } from 'react';
 // import Booking from '../Booking/Booking';
 import BookingOption from './BookingOption';
 import BookingModal from '../BookingModal/BookingModal';
+import { useQuery } from 'react-query';
 
 const AvailableBookings = ({ selectedDate }) => {
-    const [bookingOptions, setBookingOptions] = useState([]);
+    // const [bookingOptions, setBookingOptions] = useState([]);
     const [bookService, setBookService] = useState(null);
 
+    const {data: bookingOptions = []} = useQuery({
+        queryKey: ['bookingOptions'],
+        queryFn: () => async() =>{
+            const res = await ('http://localhost:5000/bookingOptions');
+            const data = await res.json();
+            return data
+        }
+        // .then(res => res.json())
+    });
 
 
 
-    useEffect(() => {
-        fetch('http://localhost:5000/bookingOptions')
-            .then(res => res.json())
-            .then(data => setBookingOptions(data))
-    }, [])
+
+    // useEffect(() => {
+    //     fetch('http://localhost:5000/bookingOptions')
+    //         .then(res => res.json())
+    //         .then(data => setBookingOptions(data))
+    // }, [])
 
     return (
         <section className='mx-5'>
