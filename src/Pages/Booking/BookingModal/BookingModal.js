@@ -1,10 +1,14 @@
 import { format } from 'date-fns';
-import React from 'react';
+import React, { useContext } from 'react';
+import { AuthContext } from '../../../contexts/AuthProvider';
+import { toast } from 'react-hot-toast';
 
 const BookingModal = ({ bookService, setBookService, selectedDate }) => {
     const { name, slots } = bookService;
 
     const date = format(selectedDate, 'PP');
+
+    const {user} = useContext(AuthContext);
 
     const handleBooking = event =>{
         event.preventDefault();
@@ -24,7 +28,23 @@ const BookingModal = ({ bookService, setBookService, selectedDate }) => {
 
         //TOdo: send data to the server and once data is saved then closed the data and display success toast
         console.log(booking);
-        setBookService(null);
+
+        fetch('http://localhost:5000/bookings',{
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(booking)
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log(data);
+            setBookService(null);
+            toast.success('Booking confirmed')
+        })
+
+
+        
 
     }
 
@@ -46,8 +66,8 @@ const BookingModal = ({ bookService, setBookService, selectedDate }) => {
                                     >{slot}</option>)
                             }
                         </select>
-                        <input name='name' type="text" placeholder="Your Name" className="input w-full input-bordered" />
-                        <input name='email' type="email" placeholder="Email Address" className="input w-full input-bordered" />
+                        <input name='name' type="text" defaultValue={user?.displayName} disabled placeholder="Your Name" className="input w-full input-bordered" />
+                        <input name='email' type="email" defaultValue={user?.email}  disabled placeholder="Email Address" className="input w-full input-bordered" />
                         <input name='phone' type="phone" placeholder="Your Phone Number" className="input w-full input-bordered" />
                         <br />
                         <input className=' btn btn-neutral w-full' type="submit" value="submit" />
