@@ -12,7 +12,7 @@ const AvailableBookings = ({ selectedDate }) => {
 
 
     useEffect(() => {
-        fetch('bookingOptions.json')
+        fetch('http://localhost:5000/bookingOptions')
             .then(res => res.json())
             .then(data => setBookingOptions(data))
     }, [])

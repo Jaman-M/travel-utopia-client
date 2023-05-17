@@ -19,7 +19,7 @@ const Navbar = () => {
         {user?.uid ?
             <>
                 <li><Link to="/dashboard">Dashboard</Link></li>
-                <li><button onClick={handleLogOut}>Sign out</button></li>
+                <li><button className='btn btn-active btn-ghost' onClick={handleLogOut}>Sign out</button></li>
             </>
             : <li><Link to="/login">Login</Link></li>}
     </React.Fragment>
