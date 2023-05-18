@@ -4,7 +4,7 @@ import { useQuery } from 'react-query';
 
 const MyBooking = () => {
     const { user } = useContext(AuthContext);
-    const url = `http://localhost:5000/bookings?email = ${user?.email}`;
+    const url = `http://localhost:5000/bookings?email=${user?.email}`;
 
     const { data: bookings = [] } = useQuery({
         queryKey: ['bookings', user?.email],
@@ -20,7 +20,7 @@ const MyBooking = () => {
             <h2 className='text-3xl mb-5  '>My Booking</h2>
             <div className="overflow-x-auto">
                 <table className="table w-full">
-                    {/* head */}
+                    
                     <thead>
                         <tr>
                             <th></th>
@@ -33,12 +33,12 @@ const MyBooking = () => {
                     <tbody>
                         {
                             bookings.map((booking, i) =>
-                                <tr>
-                                    <th>{i}</th>
-                                    <td>Cy Ganderton</td>
-                                    <td>Quality Control Specialist</td>
-                                    <td>Blue</td>
-                                    <td>Blue</td>
+                                <tr key={booking._id}>
+                                    <th>{i+1}</th>
+                                    <td>{booking.client}</td>
+                                    <td>{booking.bookService}</td>
+                                    <td>{booking.bookingDate}</td>
+                                    <td>{booking.slot}</td>
                                 </tr>)
                         }
 
