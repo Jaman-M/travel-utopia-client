@@ -6,8 +6,10 @@ import Booking from "../../Pages/Booking/Booking/Booking";
 import SignUp from "../../Pages/SignUp/SignUp";
 import DashBoard from "../../Pages/DashBoard/DashBoard/DashBoard";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
+import DashboardLayout from "../../Layout/DashboardLayout";
+import MyBooking from "../../Pages/DashBoard/MyBooking/MyBooking";
 
-const router = createBrowserRouter ([
+const router = createBrowserRouter([
     {
         path: '/',
         element: <Main></Main>,
@@ -32,7 +34,14 @@ const router = createBrowserRouter ([
     },
     {
         path: '/dashboard',
-        element: <PrivateRoute><DashBoard></DashBoard></PrivateRoute>
+        element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
+        children: [
+            {
+                path: '/dashboard',
+                element: <MyBooking></MyBooking>
+
+            }
+        ]
     }
 ])
 
