@@ -4,20 +4,26 @@ import React, { useEffect, useState } from 'react';
 import BookingOption from './BookingOption';
 import BookingModal from '../BookingModal/BookingModal';
 import { useQuery } from 'react-query';
+import Loading from '../../Shared/Loading/Loading';
 
 const AvailableBookings = ({ selectedDate }) => {
     // const [bookingOptions, setBookingOptions] = useState([]);
     const [bookService, setBookService] = useState(null);
+    const date = format(selectedDate, 'PP')
 
-    const {data: bookingOptions = []} = useQuery({
-        queryKey: ['bookingOptions'],
+    const {data: bookingOptions = [], refetch, isLoading} = useQuery({
+        queryKey: ['bookingOptions', date],
         queryFn: async() =>{
-            const res = await fetch ('http://localhost:5000/bookingOptions');
+            const res = await fetch (`http://localhost:5000/bookingOptions?date=${date}`);
             const data = await res.json();
             return data
         }
         // .then(res => res.json())
     });
+
+    if(isLoading){
+        return <Loading></Loading>
+    }
 
 
 
@@ -47,6 +53,7 @@ const AvailableBookings = ({ selectedDate }) => {
                 <BookingModal
                 selectedDate={selectedDate}
                     bookService={bookService}
+                    refetch= {refetch}
                     setBookService={setBookService}
                 ></BookingModal>
             }
